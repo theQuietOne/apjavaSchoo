@@ -1,0 +1,34 @@
+import java.util.Scanner;
+public class Payroll {
+	publicstatic void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		double time, wage, tax=0, gross=0, net=100;
+		System.out.println("Enter your hours worked:");
+		time=in.nextDouble();
+		System.out.println("Enter your hourly wage:");
+		wage=in.nextDouble();
+		if(time<=0)
+			System.out.println("No pay for you!");
+		else if(time>40)
+		gross=wage*(40+(1.5*(time-40)));
+		else
+			gross=time*wage;
+		if(gross>100&&gross<=500)
+		{
+			tax=gross*.3;
+			net=gross-tax;
+		}
+		else if(gross>500)
+		{
+			tax=(400*.3)+((gross-500)*.9);
+			net=gross-tax;
+		}
+		System.out.print("You earned $"+gross+" pretax");
+		if(time>40)
+			System.out.println(".  That includes $"+(time-40)*1.5*wage+" of overtime");
+		else System.out.println();
+		System.out.println("You had $"+tax+" in taxes");
+		System.out.println("That gives you $"+net+" to take home");
+		System.out.println("That'll buy "+(int)(40*(net/6.73))+" waffles");
+		}
+}
