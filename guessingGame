@@ -1,0 +1,48 @@
+import java.util.Random;
+import java.util.Scanner;
+public class GuessingGame {
+
+    public static void main(String[] args) {
+        Scanner in=new Scanner(System.in);
+        int lowlim=0, uplim=0, guesses=0, num, userin;
+        Random r=new Random();
+        System.out.println("Enter a lower limit to your guessing range:");
+        lowlim=in.nextInt();
+        System.out.println("Enter an upper limit to your guessing range:");
+        uplim=in.nextInt();
+        while(uplim<=lowlim)
+        {
+            System.out.println("Enter an upper limit to your guessing range:");
+            uplim=in.nextInt();
+        }
+        num=r.nextInt((uplim-lowlim)+1)+lowlim;
+        System.out.println("How many guesses?");
+        guesses=in.nextInt();
+        while(guesses>0)
+        {
+            System.out.println("Enter your guess.  You have "+guesses+" guesses remaining");
+            userin=in.nextInt();
+            if(userin==num)
+            {
+                System.out.println("You were correct!");
+                guesses=0;
+            }
+            else if(userin>uplim)
+                System.out.println("Your guess was higher than the upper limit!  Try again!");
+            else if(userin<lowlim)
+                System.out.println("Your guess was lower than the lower limit!  Try again!");
+            else if(userin<num)
+            {
+                System.out.println("Your guess was too low!");
+                guesses--;
+            }
+            else if(userin>num)
+            {
+                System.out.println("Your guess was too high!");
+                guesses--;
+            }
+            
+        }
+        System.out.println("The answer was "+num);
+    }
+}
