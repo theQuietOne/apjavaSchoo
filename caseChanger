@@ -1,0 +1,20 @@
+import java.util.Scanner;
+public class CaseChanger
+{
+    public static void main(String[] args)
+    {
+        String input;
+        Scanner in= new Scanner(System.in);
+        System.out.println("Enter the word you want to reverse the case on:");
+        input = in.nextLine();
+        char[] output=input.toCharArray();
+        for(int count=0; count<input.length(); count++)
+        {
+            if(output[count]>=65&&output[count]<=90)
+                output[count]+=32;
+            else if(output[count]>=97&&output[count]<=122)
+                output[count]-=32;
+        }
+        System.out.println(output);
+    }
+}
