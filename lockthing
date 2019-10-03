@@ -1,0 +1,22 @@
+import java.util.Scanner;
+import java.util.Random;
+public class Lockthing {
+    public static void main(String[] args) {
+        int numOfNums=0, userguesses=0;
+        boolean game=true;
+        Scanner in=new Scanner(System.in);
+        Random r=new Random();
+        numOfNums=in.nextInt();
+        int[] combo=new int[numOfNums];
+        int[] usearray=new int[numOfNums];
+        for(int count=0; count<numOfNums; count++)
+            combo[count]=r.nextInt(10);
+        while(game)
+        {
+            for(int count=0; count<numOfNums; count++)
+                usearray[count]=in.nextInt();
+            
+        }
+    }
+    
+}
