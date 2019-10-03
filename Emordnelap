@@ -1,0 +1,37 @@
+import java.util.Scanner;
+public class Emordnelap
+{
+    public static void main(String[] args)
+    {
+        System.out.println("Enter a string to see if it's a palendrome");
+        Scanner in=new Scanner(System.in);
+        String input=parse(in.nextLine());
+        if(input.equals(reverse(input)))
+            System.out.println("Your input is a palendrome!");
+        else System.out.println("Your input is not a palendrome");
+    }
+    public static String parse(String indo)
+    {
+        char[] input=indo.toCharArray();
+        String output="";
+        char r;
+        for(int count=0; count<indo.length(); count++)
+        {
+            r=input[count];
+            if((r>=65&&r<=90)||(r>=97&&r<=122))
+            {
+                output+=r;
+            }
+        }
+        return output;
+    }
+    public static String reverse(String indo)
+    {
+        char [] input=indo.toCharArray();
+        String output="";
+        for(int count=indo.length()-1; count>=0; count--)
+            output+=input[count];
+        return output;
+    }
+    
+}
