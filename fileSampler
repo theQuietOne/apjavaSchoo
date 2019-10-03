@@ -1,0 +1,28 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.util.Scanner;
+public class FileSampler
+{
+    public static void main(String[] args) throws Exception
+    {
+        File in=new File("myfile.txt");
+        Scanner flin=new Scanner("myfile.txt");
+        FileWriter flout=new FileWriter("myfile.txt");
+        int num=0;
+        String words;
+        Scanner keys=new Scanner(System.in);
+        while(num<4)
+        {
+            num++;
+            System.out.print("Enter a word");
+            words=keys.nextLine();
+            flout.write(words+"\r\n");
+        }
+        flout.close();
+        while(flin.hasNextLine())
+        {
+            words=flin.nextLine();
+            System.out.println(words);
+        }
+    }
+}
