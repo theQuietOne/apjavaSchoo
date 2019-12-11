@@ -1,0 +1,182 @@
+//class
+package fractionclass;
+public class FractionClass{
+    private int fractNum, fractDenom;
+    FractionClass()
+    {
+        fractNum=0;
+        fractDenom=0;
+    }
+    FractionClass(int num, int denum)
+    {
+	fractNum = num;
+	fractDenom = denum;
+    }
+    FractionClass(String frati)				//constructs class with predetermined value; format is below
+    {
+	//format is <mixed&>num/denom
+        char [] frat=frati.toCharArray();
+    	String flag = "";
+    	int divplace = 0, andplace = 0;
+    	for (int count = 0; count < frati.length(); count++)
+    	{
+    		if (frat[count] == '/')
+    		{
+    			flag += '/';
+    			divplace = count;
+    		}
+    		else if (frat[count] == '&')
+    		{
+    			flag += '&';
+    			andplace = count;
+    		}
+    	}
+    	if (flag.equals("/"))
+    	{
+    		fractNum = Integer.parseInt(frati.substring(0, divplace));
+    		fractDenom = Integer.parseInt(frati.substring(divplace + 1, frati.length() - (divplace + 1)));
+    	}
+    	else if (flag.equals("&/"))
+    	{
+    		fractDenom = Integer.parseInt(frati.substring(divplace + 1, frati.length() - (divplace + 1)));
+    		fractNum = Integer.parseInt(frati.substring(andplace + 1, divplace - (andplace + 1)))+ fractDenom*Integer.parseInt(frati.substring(0, andplace));
+    	}
+    }
+    FractionClass reduce()
+    {
+        FractionClass redo=new FractionClass();
+	int biggest;
+	if (fractNum < fractDenom)
+		biggest = fractDenom;
+	else
+		biggest = fractNum;
+	boolean flag = true;
+	while (flag == true)
+	{
+		flag = false;
+		for (int reduce = 2; reduce < biggest; reduce++)
+		{
+			if (fractNum%reduce == 0 && fractDenom%reduce == 0)
+			{
+				fractNum /= reduce;
+				fractDenom /= reduce;
+				flag = true;
+			}
+		}
+	}
+	redo.fractNum = fractNum;
+	redo.fractDenom = fractDenom;
+	return redo;
+    }
+    FractionClass multFrac(FractionClass multdo)	//multiplies two fractions together
+    {
+	FractionClass multing=new FractionClass();
+	multing.fractNum = fractNum * multdo.fractNum;
+	multing.fractDenom = fractDenom * multdo.fractDenom;
+	return multing;
+    }
+    FractionClass divideFrac(FractionClass divdo)//divides one fraction by another
+    {
+	FractionClass diving=new FractionClass();
+	diving.fractNum = fractNum * divdo.fractDenom;
+	diving.fractDenom = fractDenom * divdo.fractNum;
+	return diving;
+    }
+    int wholeFind(FractionClass mixmake)			//returns whole number which would be associated with fraction value (IE 2 for 7/3)
+    {
+	return mixmake.fractNum / mixmake.fractDenom;
+    }
+    FractionClass addFrac(FractionClass adddo)	//adds two fractions together
+    {
+	FractionClass added=new FractionClass();
+	int num = fractDenom;
+	fractNum *= adddo.fractDenom;
+	fractDenom *= adddo.fractDenom;
+	adddo.fractNum *= num;
+	adddo.fractDenom *= num;
+	added.fractNum = fractNum + adddo.fractNum;
+	added.fractDenom = fractDenom;
+	return added;
+    }
+    FractionClass subtractFrac(FractionClass subdo)//subtracts one fraction from another
+    {
+	FractionClass subded=new FractionClass();
+	int num = fractDenom;
+	fractNum *= subdo.fractDenom;
+	fractDenom *= subdo.fractDenom;
+	subdo.fractNum *= num;
+	subdo.fractDenom *= num;
+	subded.fractNum = fractNum-subdo.fractNum;
+	subded.fractDenom = fractDenom;
+	return subded;
+    }
+    boolean equalFrac(FractionClass comparedo)		//determines if two fractions are equal
+    {
+	float num1=fractNum, num2=comparedo.fractNum, denom1=fractDenom, denom2=comparedo.fractDenom;
+	return (num1 / denom1 == num2 / denom2);
+    }
+    boolean isLessThanFrac(FractionClass comparedo)	//determines if a fraction is less than another
+    {
+	float num1 = fractNum, num2 = comparedo.fractNum, denom1 = fractDenom, denom2 = comparedo.fractDenom;
+	return (num1 / denom1 < num2 / denom2);
+    }
+    boolean isGreaterThanFrac(FractionClass comparedo)//determines if a fraction is greater than another
+    {
+	float num1 = fractNum, num2 = comparedo.fractNum, denom1 = fractDenom, denom2 = comparedo.fractDenom;
+	return (num1 / denom1 > num2 / denom2);
+    }
+    String showFrac()						//returns the current content of the object
+    {
+	return ((fractNum) + "/" + (fractDenom));
+    }
+    void setFrac(String frati)						//changes values of numerator and denominator simultaniously
+    {
+	//same code as constructor, so if constructor is buggy this will be too
+	//format is <mixed&>num/denom
+	String flag = "";
+        char [] frat=frati.toCharArray();
+	int divplace = 0, andplace = 0;
+	for (int count = 0; count < frati.length(); count++)
+	{
+		if (frat[count] == '/')
+		{
+			flag += '/';
+			divplace = count;
+		}
+		else if (frat[count] == '&')
+		{
+			flag += '&';
+			andplace = count;
+		}
+	}
+	if (flag == "/")
+	{
+		fractNum = Integer.parseInt(frati.substring(0, divplace));
+		fractDenom = Integer.parseInt(frati.substring(divplace + 1, frati.length() - (divplace + 1)));
+	}
+	else if (flag == "&/")
+	{
+		fractDenom = Integer.parseInt(frati.substring(divplace + 1, frati.length() - (divplace + 1)));
+		fractNum = Integer.parseInt(frati.substring(andplace + 1, divplace - (andplace + 1))) + fractDenom * Integer.parseInt(frati.substring(0, andplace));
+	}
+    }
+    void setNum(int num)							//sets numerator to a value
+    {
+	fractNum = num;
+    }
+    void setDenom(int den)						//sets denominator to a value
+    {
+	fractDenom = den;
+    }
+    
+}
+//main
+package fractionclass;
+public class runFrac {
+    public static void main(String[]args)
+    {
+        FractionClass frac=new FractionClass("12/4");
+        frac.setNum(3);
+        System.out.println(frac.equals(frac));
+    }
+}
