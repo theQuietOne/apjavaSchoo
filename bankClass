@@ -1,0 +1,51 @@
+//class
+public class BankClass{
+    private int balance=0;
+    public double getBalance()
+    {
+        double dbalance;
+        dbalance=balance;
+        return(dbalance/100);
+    }
+    public void deposit(double depo)
+    {
+        int ddpo=(int)(depo*100);
+        balance+=ddpo;
+    }
+    public void withdrawal(double withd)
+    {
+        int wit=(int)(withd*100);
+        if (wit<=balance)
+            balance-=wit;
+    }
+}
+//main
+import java.util.Scanner;
+public class BankRun {
+    public static void main(String[]args)
+    {
+        Scanner in=new Scanner(System.in);
+        BankClass bank=new BankClass();
+        int userin=0;
+        while(userin<=2&&userin>=0)
+        {
+            System.out.println("Enter 0 for deposit, 1 for withdraw, 2 for balance");
+            userin=in.nextInt();
+            switch(userin){
+                case 0:
+                    bank.deposit(in.nextDouble());
+                    break;
+                case 1:
+                    double ye = bank.getBalance();
+                    bank.withdrawal(in.nextDouble());
+                    if(ye==userin)
+                        System.out.println("You don't have that much!");
+                    break;
+                case 2:
+                    System.out.println(bank.getBalance());
+                    break;
+            }
+        }
+        System.out.println(bank.getBalance());
+    }
+}
