@@ -1,0 +1,16 @@
+import java.util.ArrayList;
+import java.util.Random;
+public class ArrayListSampler{
+    public static void main(String[] args){
+        ArrayList ar=new ArrayList();
+        Random r=new Random();
+        int num;
+        for(int h=0; h<25; h++)
+        {
+            num=r.nextInt(50);
+            ar.add(num);
+        }
+        for(int h=0; h<ar.size(); h++)
+            System.out.println(ar.get(h));
+    }
+}
