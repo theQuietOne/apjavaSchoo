@@ -1,0 +1,11 @@
+import java.util.Random;
+public class ForEachLoop{
+    public static void main(String[] args){
+        int [] g=new int[10];
+        Random r=new Random();
+        for(int t=0; t<10; t++)
+            g[t]=r.nextInt();
+        for(int y:g)
+            System.out.println(y);
+    }
+}
