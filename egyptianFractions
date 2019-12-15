@@ -1,0 +1,34 @@
+import java.util.Scanner;
+/**
+ *
+ * @author Allison
+ */
+public class egyptRun {
+    public static void main(String[] args)
+    {
+        Scanner in=new Scanner(System.in);
+        Fraction userin=new Fraction();
+	String str;
+	str=in.nextLine();
+	userin.setFrac(str);
+        System.out.println("--------");
+        alg(userin);
+    }
+    static void alg(Fraction dothing)
+    {
+        double num, denom;
+	num = dothing.showNum();
+	denom = dothing.showDenom();
+	Fraction firstone=new Fraction(), secondone=new Fraction();
+	firstone.setNum(1);
+ 	firstone.setDenom((int)Math.ceil(denom/num));
+        System.out.println(firstone.showFrac());
+        secondone.setNum(-1*(dothing.showDenom()%dothing.showNum())+dothing.showNum());
+        secondone.setDenom(dothing.showDenom()*(int)Math.ceil(denom/num));
+        secondone.reduce();
+        if(secondone.showNum()==1)
+            System.out.println(secondone.showFrac());
+        else
+            alg(secondone);
+    }
+}
