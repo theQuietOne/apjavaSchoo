@@ -2,22 +2,24 @@ package patternfinder;
 import java.util.ArrayList;
 public class PatternFinder{
     public static void main(String[] args){
-        EasyReader in=new EasyReader("mystery.dat");
+            EasyReader in=new EasyReader(<insert filename here>);   //may need full filepath for reasons
         ArrayList numofeach=new ArrayList();
         String prevnum, stonum="";
+        System.out.println(in.bad());
         int counter=0;
         stonum=in.readWord();
         prevnum=stonum;
+        stonum=in.readWord();
         while(!in.eof())
         {
-            stonum=in.readWord();
             if(!stonum.equals(prevnum))
             {
                 numofeach.add(counter);
                 prevnum=stonum;
-                counter=0;
+                counter=1;
             }
             else counter++;
+            stonum=in.readWord();
         }
         for(int c=0; c<numofeach.size(); c++)
             System.out.println(numofeach.get(c));
