@@ -1,0 +1,191 @@
+import java.util.ArrayList;
+public class wordClass {
+    wordClass()
+    {
+        dictionary=new ArrayList();
+    }
+    wordClass(String dictFile)
+    {
+        dictionary=new ArrayList();
+    }
+    private ArrayList dictionary;
+    String word;
+//    String[] alphaSort()
+//    {
+//        
+//    }
+//    String[] alphaSort(String str)
+//    {
+//        
+//    }
+    String charToString(char ch)
+    {
+        String aa=""+ch;
+        return aa;
+    }
+//    boolean contains(char p, String whole)
+//    {
+//        
+//    }
+//    boolean contains(String part)
+//    {
+//        
+//    }
+//    boolean contains(String part, String whole)
+//    {
+//        
+//    }
+//    String differBy(Sting word, int quan)
+//    {
+//        
+//    }
+//    String getWordRandom()
+//    {
+//        
+//    }
+//    int howManyOf(char ch, String whole)
+//    {
+//        
+//    }
+//    int howManyOf(String part, String whole)
+//    {
+//        
+//    }
+//    int indexAt(char ch)
+//    {
+//        
+//    }
+//    int indexAt(char ch, int place)
+//    {
+//        
+//    }
+//    int indexAt(int num, char ch, String str)
+//    {
+//        
+//    }
+//    int indexAt(int num, String part, String whole)
+//    {
+//        
+//    }
+//    int indexAt(String part, String whole)
+//    {
+//        
+//    }
+//    int indexOfWord(String part)
+//    {
+//        
+//    }
+//    int indexOfWord(String part)
+//    {
+//        
+//    }
+//    int indexOfWord(String part, int place)
+//    {
+//        
+//    }
+//    int indexOfWordInLibrary(String target)
+//    {
+//        
+//    }
+//    boolean isAlpha(char ch)
+//    {
+//        
+//    }
+//    boolean isAlpha(String str)
+//    {
+//        
+//    }
+//    boolean isSubset(String str)
+//    {
+//        
+//    }
+//    boolean isSubset(String part, String whole)
+//    {
+//        
+//    }
+//    String[] lengthLimit(int size)
+//    {
+//        
+//    }
+//    String lower()
+//    {
+//        
+//    }
+//    String lower(char ch)
+//    {
+//        
+//    }
+//    String lower(String str)
+//    {
+//        
+//    }
+//    String[] parseSentence(String str)
+//    {
+//        
+//    }
+//    String[] returnAlphaFile(String fileName)
+//    {
+//        
+//    }
+//    String[] returnCurrentLibrary()
+//    {
+//    
+//    }
+    String reverse(String str)
+    {
+        String rts="";
+        for(int counter=str.length()-1; counter>-1; counter--)
+        {
+            rts+=str.charAt(counter);
+        }
+        return rts;
+    }
+//    void setCurrentWord(String word)
+//    {
+//        
+//    }
+//    void setLibraryValue(String[] listName)
+//    {
+//        
+//    }
+//    void setLibraryValue(String filename)
+//    {
+//        
+//    }
+//    void setRandomWord()
+//    {
+//        
+//    }
+//    String showCurrentWord()
+//    {
+//        
+//    }
+//    String showWordAt(int pos)
+//    {
+//        
+//    }
+//    String upper()
+//    {
+//        
+//    }
+//    char upper(char ch)
+//    {
+//        
+//    }
+//    String upper(String str)
+//    {
+//        
+//    }
+//    String wordAt(int place)
+//    {
+//        
+//    }
+//    int wordCount()
+//    {
+//        
+//    }
+//    void writeLibrary(String fileName)
+//    {
+//        
+//    }
+}
