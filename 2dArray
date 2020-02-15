@@ -1,8 +1,51 @@
 package pkg2darray;
+import java.util.Random;
 public class Main{
-    public static void main(String[] args){
+    public static void main(String[] args)
+    {
+        Random r=new Random();
         int [][] arr1=new int[4][4];
         int [][] arr2=new int[4][4];
-        
+        //assign values, print arr1
+        for(int c=0; c<4; c++)
+        {
+            for(int d=0; d<4; d++)
+            {
+                System.out.print((arr1[c][d]=r.nextInt(9)+1)+" ");
+                arr2[c][d]=r.nextInt(9)+1;
+            }
+            System.out.println();
+        }
+        System.out.println();
+        //print arr2
+        for(int c=0; c<4; c++)
+        {
+            for(int d=0; d<4; d++)
+                System.out.print((arr2[c][d])+" ");
+            System.out.println();
+        }
+        System.out.println();
+        //count which positions match, print that out
+        int matches=0;
+        for(int c=0; c<4; c++)
+        {
+            for(int d=0; d<4; d++)
+            {
+                if(arr1[c][d]==arr2[c][d])
+                {
+                    System.out.print("+"+" ");
+                    matches++;
+                }
+                else System.out.print("-"+" ");
+                }
+            System.out.println();
+        }
+        //print coordinates
+        for(int c=0; c<4; c++)
+            for(int d=0; d<4; d++)
+                if(arr1[c][d]==arr2[c][d])
+                    System.out.println("row: "+(c+1)+"  column: "+(d+1));
+        //print % overlap
+        System.out.println("There was a "+((double)matches/16)*100+"% overlap");
     }
 }
