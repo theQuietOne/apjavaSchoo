@@ -1,15 +1,18 @@
+package wordclass;
 import java.util.ArrayList;
-public class wordClass {
-    wordClass()
+import java.util.Random;
+public class WordClass {
+    WordClass()
     {
         dictionary=new ArrayList();
     }
-    wordClass(String dictFile)
+    WordClass(String dictFile)
     {
         dictionary=new ArrayList();
     }
     private ArrayList dictionary;
-    String word;
+    private String word;
+    private Random random=new Random();
 //    String[] alphaSort()
 //    {
 //        
@@ -23,34 +26,44 @@ public class wordClass {
         String aa=""+ch;
         return aa;
     }
-//    boolean contains(char p, String whole)
-//    {
-//        
-//    }
-//    boolean contains(String part)
-//    {
-//        
-//    }
-//    boolean contains(String part, String whole)
-//    {
-//        
-//    }
+    boolean contains(char p, String whole)
+    {
+        return whole.contains(""+p);
+    }
+    boolean contains(String part)
+    {
+        return word.contains(part);
+    }
+    boolean contains(String part, String whole)
+    {
+        return whole.contains(part);
+    }
 //    String differBy(Sting word, int quan)
 //    {
 //        
 //    }
-//    String getWordRandom()
-//    {
-//        
-//    }
-//    int howManyOf(char ch, String whole)
-//    {
-//        
-//    }
-//    int howManyOf(String part, String whole)
-//    {
-//        
-//    }
+    String getWordRandom()
+    {
+        return (String)dictionary.get(random.nextInt(dictionary.size()));
+    }
+    int howManyOf(char ch, String whole)
+    {
+        int counter=0;
+        for(int c=0; c<whole.length(); c++)
+            if(whole.charAt(c)==ch)
+                counter++;
+        return counter;
+    }
+    int howManyOf(String part, String whole)
+    {
+        whole=whole.replaceAll("~", "");
+        if(whole.contains(part))
+        {
+            whole=whole.replaceAll(part, "~");
+            return howManyOf('*', whole);
+        }
+        return 0;
+    }
 //    int indexAt(char ch)
 //    {
 //        
@@ -87,14 +100,17 @@ public class wordClass {
 //    {
 //        
 //    }
-//    boolean isAlpha(char ch)
-//    {
-//        
-//    }
-//    boolean isAlpha(String str)
-//    {
-//        
-//    }
+    boolean isAlpha(char ch)
+    {
+        return (65<=ch&&ch<=90)||(97<=ch&&ch<=122);
+    }
+    boolean isAlpha(String str)
+    {
+        for(int c=0; c<str.length(); c++)
+            if(!isAlpha(str.charAt(c)))
+                return false;
+        return true;
+    }
 //    boolean isSubset(String str)
 //    {
 //        
@@ -107,22 +123,26 @@ public class wordClass {
 //    {
 //        
 //    }
-//    String lower()
-//    {
-//        
-//    }
-//    String lower(char ch)
-//    {
-//        
-//    }
-//    String lower(String str)
-//    {
-//        
-//    }
-//    String[] parseSentence(String str)
-//    {
-//        
-//    }
+    String lower()
+    {
+        return word=word.toLowerCase();
+    }
+    String lower(char ch)
+    {
+        return (""+ch).toLowerCase();
+    }
+    String lower(String str)
+    {
+        return str.toLowerCase();
+    }
+    String[] parseSentence(String str)
+    {
+        str=str.trim();
+        for(int c=0; c<str.length(); c++)
+            if(!isAlpha(str.charAt(c)))
+                    str=str.replace(charToString(str.charAt(c)), "");
+        return str.split(" ");
+    }
 //    String[] returnAlphaFile(String fileName)
 //    {
 //        
@@ -140,10 +160,10 @@ public class wordClass {
         }
         return rts;
     }
-//    void setCurrentWord(String word)
-//    {
-//        
-//    }
+    void setCurrentWord(String passed)
+    {
+        word=passed;
+    }
 //    void setLibraryValue(String[] listName)
 //    {
 //        
@@ -152,40 +172,40 @@ public class wordClass {
 //    {
 //        
 //    }
-//    void setRandomWord()
-//    {
-//        
-//    }
-//    String showCurrentWord()
-//    {
-//        
-//    }
-//    String showWordAt(int pos)
-//    {
-//        
-//    }
-//    String upper()
-//    {
-//        
-//    }
-//    char upper(char ch)
-//    {
-//        
-//    }
-//    String upper(String str)
-//    {
-//        
-//    }
-//    String wordAt(int place)
-//    {
-//        
-//    }
-//    int wordCount()
-//    {
-//        
-//    }
-//    void writeLibrary(String fileName)
-//    {
-//        
-//    }
+    void setRandomWord()
+    {
+        word = (String)dictionary.get(random.nextInt(dictionary.size()));
+    }
+    String showCurrentWord()
+    {
+        return word;
+    }
+    String showWordAt(int pos)
+    {
+        return (String)dictionary.get(pos);
+    }
+    String upper()
+    {
+        return(word=word.toUpperCase());   
+    }
+    char upper(char ch)
+    {
+        return Character.toUpperCase(ch);
+    }
+    String upper(String str)
+    {
+        return(str.toUpperCase());
+    }
+    String wordAt(int place)
+    {
+        return (String)dictionary.get(place);
+    }
+    int wordCount()
+    {
+        return dictionary.size();
+    }
+    void writeLibrary(String fileName)
+    {
+        //TODO: Finish this
+    }
 }
