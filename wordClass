@@ -1,26 +1,67 @@
-package wordclass;
 import java.util.ArrayList;
 import java.util.Random;
-public class WordClass {
-    WordClass()
+public class wordClass {
+    wordClass()
     {
         dictionary=new ArrayList();
     }
-    WordClass(String dictFile)
+    wordClass(String dictFile)
     {
         dictionary=new ArrayList();
     }
     private ArrayList dictionary;
     private String word;
     private Random random=new Random();
-//    String[] alphaSort()
-//    {
-//        
-//    }
-//    String[] alphaSort(String str)
-//    {
-//        
-//    }
+    String alphaSort()
+    {
+        String retrn="";
+        retrn=retrn.toLowerCase();
+        int alphabet[][]= new int[2][26];
+        for(int c:alphabet[0])
+        {
+            alphabet[0][c]=c+97;
+            alphabet[1][c]=0;
+        }
+        for(int c=0; c<word.length(); c++)
+        {
+            for(int d:alphabet[0])
+                if(alphabet[0][d]==word.charAt(c))
+                    alphabet[0][d]++;
+        }
+        for(int c=0; c<word.length(); c++)
+        {
+            for(int d=0; d<alphabet[1][c]; d++)
+            {
+                retrn+=alphabet[0][d];
+            }
+        }
+        return retrn;
+    }
+    String alphaSort(String str)
+    {
+        String retrn="";
+        retrn=retrn.toLowerCase();
+        int alphabet[][]= new int[2][26];
+        for(int c:alphabet[0])
+        {
+            alphabet[0][c]=c+97;
+            alphabet[1][c]=0;
+        }
+        for(int c=0; c<str.length(); c++)
+        {
+            for(int d:alphabet[0])
+                if(alphabet[0][d]==str.charAt(c))
+                    alphabet[0][d]++;
+        }
+        for(int c=0; c<str.length(); c++)
+        {
+            for(int d=0; d<alphabet[1][c]; d++)
+            {
+                retrn+=alphabet[0][d];
+            }
+        }
+        return retrn;
+    }
     String charToString(char ch)
     {
         String aa=""+ch;
@@ -38,7 +79,7 @@ public class WordClass {
     {
         return whole.contains(part);
     }
-//    String differBy(Sting word, int quan)
+//    String differBy(String word, int quan)
 //    {
 //        
 //    }
@@ -64,42 +105,42 @@ public class WordClass {
         }
         return 0;
     }
-//    int indexAt(char ch)
-//    {
-//        
-//    }
-//    int indexAt(char ch, int place)
-//    {
-//        
-//    }
-//    int indexAt(int num, char ch, String str)
-//    {
-//        
-//    }
-//    int indexAt(int num, String part, String whole)
-//    {
-//        
-//    }
-//    int indexAt(String part, String whole)
-//    {
-//        
-//    }
+    int indexAt(char ch)
+    {
+        return word.indexOf((int)ch);
+    }
+    int indexAt(char ch, int place)
+    {
+        return word.indexOf((int)ch, place);
+    }
+    int indexAt(int num, char ch, String str)
+    {
+        return str.indexOf((int)ch, num);
+    }
+    int indexAt(int num, String part, String whole)
+    {
+        return whole.indexOf(part, num);
+    }
+    int indexAt(String part, String whole)
+    {
+        return whole.indexOf(part);
+    }
 //    int indexOfWord(String part)
 //    {
 //        
 //    }
-//    int indexOfWord(String part)
-//    {
-//        
-//    }
-//    int indexOfWord(String part, int place)
-//    {
-//        
-//    }
-//    int indexOfWordInLibrary(String target)
-//    {
-//        
-//    }
+    int indexOfWordInLibrary(String target)
+    {
+        int counter=0;
+        for(Object c:dictionary)
+        {
+            if(((String)c).equals(target))
+                return counter;
+            else
+                counter++;
+        }
+        return -1;
+    }
     boolean isAlpha(char ch)
     {
         return (65<=ch&&ch<=90)||(97<=ch&&ch<=122);
@@ -111,18 +152,18 @@ public class WordClass {
                 return false;
         return true;
     }
-//    boolean isSubset(String str)
-//    {
-//        
-//    }
-//    boolean isSubset(String part, String whole)
-//    {
-//        
-//    }
-//    String[] lengthLimit(int size)
-//    {
-//        
-//    }
+    boolean isSubset(String part, String whole)
+    {
+        return(whole.contains(part));
+    }
+    ArrayList lengthLimit(int size)
+    {
+        ArrayList rtrn=new ArrayList();
+        for(Object c:dictionary)
+            if(((String)c).length()==size)
+                rtrn.add(c);
+        return rtrn;
+    }
     String lower()
     {
         return word=word.toLowerCase();
@@ -147,10 +188,10 @@ public class WordClass {
 //    {
 //        
 //    }
-//    String[] returnCurrentLibrary()
-//    {
-//    
-//    }
+    ArrayList returnCurrentLibrary()
+    {
+        return dictionary;
+    }
     String reverse(String str)
     {
         String rts="";
@@ -164,14 +205,22 @@ public class WordClass {
     {
         word=passed;
     }
-//    void setLibraryValue(String[] listName)
-//    {
-//        
-//    }
-//    void setLibraryValue(String filename)
-//    {
-//        
-//    }
+    void setLibraryValue(String[] listName)
+    {
+        dictionary.clear();
+        for(String c:listName)
+            dictionary.add(c);
+    }
+    void setLibraryValue(String filename)
+    {
+        dictionary.clear();
+        EasyReader in=new EasyReader(fileName);
+        dictionary.add(in.readLine());
+        while(!in.eof())
+        {
+            dictionary.add(in.readLine());
+        }
+    }
     void setRandomWord()
     {
         word = (String)dictionary.get(random.nextInt(dictionary.size()));
@@ -206,6 +255,6 @@ public class WordClass {
     }
     void writeLibrary(String fileName)
     {
-        //TODO: Finish this
+        //TODO: this
     }
 }
