@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 import java.util.Random;
-public class wordClass {
-    wordClass()
+public class WordClass {
+    WordClass()
     {
         dictionary=new ArrayList();
     }
-    wordClass(String dictFile)
+    WordClass(String dictFile)
     {
         dictionary=new ArrayList();
     }
@@ -79,10 +79,20 @@ public class wordClass {
     {
         return whole.contains(part);
     }
-//    String differBy(String word, int quan)
-//    {
-//        
-//    }
+    ArrayList differBy(String word, int quan)
+    {
+        ArrayList possible=new ArrayList();
+        ArrayList successes=new ArrayList();
+        String alphaword=alphaSort(word);
+        String tempsto;
+        for(Object c:dictionary)
+            if(((String)c).length()==word.length())
+                possible.add(c);
+        for(Object c:possible)
+            do a thing;
+            //TODO: finish
+        return successes;
+    }
     String getWordRandom()
     {
         return (String)dictionary.get(random.nextInt(dictionary.size()));
@@ -125,10 +135,6 @@ public class wordClass {
     {
         return whole.indexOf(part);
     }
-//    int indexOfWord(String part)
-//    {
-//        
-//    }
     int indexOfWordInLibrary(String target)
     {
         int counter=0;
@@ -184,10 +190,24 @@ public class wordClass {
                     str=str.replace(charToString(str.charAt(c)), "");
         return str.split(" ");
     }
-//    String[] returnAlphaFile(String fileName)
-//    {
-//        
-//    }
+    ArrayList returnAlphaFile(String fileName)
+    {
+        dictionary.clear();
+        EasyReader in=new EasyReader(fileName);
+        String tempsto=in.readWord(), adder;
+        ArrayList arr=new ArrayList();
+        while(!in.eof())
+        {
+            adder="";
+            lower(tempsto);
+            for(int c=0; c<tempsto.length(); c++)
+                if(isAlpha(tempsto.charAt(c)))
+                    adder+=tempsto.charAt(c);
+            arr.add(adder);
+            tempsto=in.readWord();
+        }
+        return arr;
+    }
     ArrayList returnCurrentLibrary()
     {
         return dictionary;
@@ -214,7 +234,7 @@ public class wordClass {
     void setLibraryValue(String filename)
     {
         dictionary.clear();
-        EasyReader in=new EasyReader(fileName);
+        EasyReader in=new EasyReader(filename);
         dictionary.add(in.readLine());
         while(!in.eof())
         {
@@ -255,6 +275,10 @@ public class wordClass {
     }
     void writeLibrary(String fileName)
     {
-        //TODO: this
+        EasyWriter out=new EasyWriter(fileName);
+        for(Object c:dictionary)
+        {
+            out.println(c);
+        }
     }
 }
